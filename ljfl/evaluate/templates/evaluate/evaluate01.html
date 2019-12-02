@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/evaluate.css">
+    <script src="/static/js/wangEditor.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <style type="text/css">
+        span {
+            color: red;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        #btn {
+            width: 98px;
+            height: 30px;
+        }
+
+        .fl {
+            float: left;
+            line-height: 32px;
+            padding-left: 10px;
+        }
+
+        .cf::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+    </style>
+
+
+</head>
+<body>
+<img src="/static/imgs/timg.jpeg" width="100%" id="bg" alt="">
+<div id="l1">
+    <h3>发表评价</h3>
+    <p class="p1">快乐的你分享完美的使用心得~</p>
+    <div class="log">
+        <div class="left">
+            {{}}
+        </div>
+        <div class="right">
+            <div class="cf">
+                <div class="fl" id="btn">
+                    <span data-num="1">★</span><span data-num="2">★</span><span data-num="3">★</span><span data-num="4">★</span><span
+                        data-num="5">★</span>
+                </div>
+                <div class="fl" id="score" style="margin-left: 15px">
+                    请您对本次服务体验打分~
+                </div>
+            </div>
+
+            <div id="editor">
+                {#富文本编辑框#}{{ str }}
+            </div>
+            <div class="sbtn">
+                <input type="submit" id="send" value="发表">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //实例化富文本编辑框对象
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    editor.create();
+    var num = 0;
+    //星星评分
+    var spans = document.querySelectorAll("span");
+    var btn = document.querySelector("#btn");
+    btn.onmouseover = function jdd() {
+        event.stopPropagation();
+        num = event.target.dataset.num;
+        console.log(num);//获取自定义属性值
+        for (var i = 0; i < num; i++) {
+            spans[i].style.color = "yellow";
+            //其余没选到的仍为红色
+            for (var j = num; j < spans.length; j++) {
+                spans[j].style.color = "red";
+            }
+
+        }
+        var score = document.querySelector("#score");
+        score.innerHTML = num + "分";
+    };
+
+
+    //单击发表按钮事件
+    $('#send').on('click', function () {
+        var $txt = editor;
+        if ($txt !== "") {
+            var obj = new Object();
+            obj.txt = $txt.txt.text();
+            editor.txt.text();
+            var _v = JSON.stringify(obj);
+            if (obj.txt == '') {
+                alert('请输入评价哦~')
+            } else if (num == 0) {
+
+                alert('请给我们评分哦~')
+            } else {
+                $.ajax({
+                    url: '/ljfl/evaluate',
+                    type: 'POST',
+                    data: {
+                        "txt_info": obj.txt,
+                        'num': num,
+                        'order_id':14
+
+                    },
+                    success: function () {
+
+                        alert('发送成功');
+                        {#window.location.href = '/index'#}
+                    }
+
+
+                })
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

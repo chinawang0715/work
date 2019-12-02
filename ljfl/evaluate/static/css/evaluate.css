@@ -1,0 +1,91 @@
+/*清楚样式格式*/
+#bg{
+    opacity: 0.3;
+    position: fixed;
+}
+#l1{
+    width: 100%;
+    height: 600px;
+    background-color: gainsboro;
+    position: fixed;
+    top: 50%;
+    margin-top:-300px ;
+    overflow: hidden;
+
+}
+#l1 h3{
+    text-align: center;
+    color: #333;
+
+}
+p{
+    color: #666;
+}
+.p1{
+    text-align: center;
+}
+#l1 .log{
+    width: 1280px;
+    height: 400px;
+    background-color: gainsboro;
+    border-radius: 8px;
+    position: absolute;
+    left: 50%;
+    margin-left: -640px;
+    top: 50%;
+    margin-top: -200px;
+    overflow: hidden;
+}
+#l1 .log .left{
+    float: left;
+    position: absolute;
+    height: 400px;
+    width: 400px;
+    margin-right: 10px;
+    background-color: white;
+}
+
+#l1 .log .right{
+    width: 850px;
+    height: 400px;
+    float: right;
+    position: relative;
+    margin-left: 10px;
+    overflow: hidden;
+    background-color: white;
+}
+
+#l1 .log .right #editor{
+    text-align: left;
+    float: left;
+    position: relative;
+    margin-left: 45px;
+    margin-top: 12px;
+
+
+}
+
+#l1 .log .right .sbtn {
+    height: 33px;
+    width: 60px;
+    float: right;
+    font-weight: 700;
+    font-size: 18px;
+    position: absolute;
+    bottom: 7px;
+    right: 10px;
+}
+#l1 .log .right .sbtn #send{
+    width: 60px;
+    height: 33px;
+}
+
+
+
+
+
+
+
+
+
+
