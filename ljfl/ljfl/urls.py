@@ -18,4 +18,6 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    # http://127.0.0.1:8000/index/xxx
+    url(r'index/', include('index.urls')),
 ]
