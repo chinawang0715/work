@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网站首页</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/scrollReveal.js"></script>
+</head>
+<body>
+<!--包裹导航栏-->
+{% include 'index/head.html' %}
+<div id="layer1">
+    <div class="lleft">
+        <span id="imgleft">&lsaquo;</span>
+        <img src="/static/images1/index11.jpg" width="752" height="452" id="img" alt="">
+        <span id="imgright">&rsaquo;</span>
+        <p>go go go</p>
+    </div>
+
+    <div class="lright">
+        <div class="box">
+            <div class="title">老师:"green",绿色!</div>
+            <img src='/static/images1/true.jpeg' alt="" width="363" height="216">
+            <p>学生:"绿色"是什么颜色?</p>
+        </div>
+        <form class="/index" action="" method="post">
+            {% csrf_token %}
+            <div>
+                <input type="submit" value="垃圾分类查询" height="40px">
+                <input type="text" name="lj" height="40px">
+                <div id="lj">
+                    {{ ljfl }}
+
+                </div>
+
+
+            </div>
+
+        </form>
+
+
+    </div>
+</div>
+{% include 'index/footer.html' %}
+<script src="/static/js/index.js"></script>
+</body>
+</html>
